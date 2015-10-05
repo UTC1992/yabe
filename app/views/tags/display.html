@@ -1,17 +1,13 @@
 *{ Display a post in one of these modes: 'full', 'home' or 'teaser' }*
  
 <div class="post ${_as == 'teaser' ? 'teaser' : ''}">
-    
-    
     <h2 class="post-title">
 	    <a href="@{Application.show(_post.id)}">${_post.title}</a>
 	</h2>
-    
-    
-    
     <div class="post-metadata">
         <span class="post-author">by ${_post.author.fullname}</span>,
         <span class="post-date">${_post.postedAt.format('dd MMM yy')}</span>
+        
         #{if _as != 'full'}
             <span class="post-comments">
                 &nbsp;|&nbsp; ${_post.comments.size() ?: 'no'} 
@@ -55,7 +51,7 @@
     </div>
 #{/if}
 
-<!-- para mostrar el conjunto de tags en el modo de vista de post completa -->
+
 #{if _as != 'full'}
     <span class="post-comments">
         &nbsp;|&nbsp; ${_post.comments.size() ?: 'no'}
@@ -67,9 +63,13 @@
 #{/if}
 #{elseif _post.tags}
     <span class="post-tags">
-        - Tagged
-		#{list items:_post.tags, as:'tag'}
-		    <a href="@{Application.listTagged(tag.name)}">${tag}</a>${tag_isLast ? '' : ', '}
+        
+        #{list items:_post.tags, as:'tag'}
+		    <a href="@{Application.listTagged(tag.name)}" style="color: white;">${tag}</a>${tag_isLast ? '' : ', '}
 		#{/list}
     </span>
 #{/elseif}
+
+
+
+

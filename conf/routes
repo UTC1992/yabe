@@ -17,17 +17,21 @@ GET     /public/                                staticDir:public
 
 #nuevas rutas paginas
 
-GET     /posts/{<[0-9]+>id}             		Application.show
 POST    /posts/{postId}/comments                Application.postComment
 GET     /captcha                                Application.captcha
+
+GET     /posts/{<[0-9]+>id}             		Application.show
 GET     /posts/{tag}                    		Application.listTagged
 
 
 # Importar routes del módulo CRUD
-*      /admin              						module:crud
+# Administracion
+GET     /admin/?                                Admin.index
+*       /admin                                  module:crud
 
 
-
+# Importar rutas de Secure
+*       /                                       module:secure
 
 
 
